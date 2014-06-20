@@ -29,7 +29,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>no.njm.example.Application</mainClass>
+                            <mainClass>no.njm.example.DefaultMethods</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

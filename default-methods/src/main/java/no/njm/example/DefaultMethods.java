@@ -5,9 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.time.format.DateTimeFormatter;
 
-public class Application {
+public class DefaultMethods {
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultMethods.class);
     private static final DateTimeFormatter READABLE_FORMAT;
 
     static {
