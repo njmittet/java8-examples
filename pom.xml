@@ -38,6 +38,7 @@
 
     <modules>
         <module>default-methods</module>
+        <module>optionals</module>
     </modules>
 
 </project>
