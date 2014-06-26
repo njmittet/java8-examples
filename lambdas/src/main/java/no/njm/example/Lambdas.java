@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 /**
@@ -14,10 +15,10 @@ public class Lambdas {
 
     private static final Logger log = LoggerFactory.getLogger(Lambdas.class);
 
-    private void sortList() {
+    private void basicLambda() {
         List<String> list = new ArrayList<>();
 
-        // Verbose Lambda
+        // Implementing interface Comparator
         list.sort((String a, String b) -> {
             return a.compareTo(b);
         });
@@ -29,8 +30,15 @@ public class Lambdas {
         list.sort((a, b) -> a.compareTo(b));
     }
 
+    private void functionalInterface() {
+        // Omitting () around single input parameter
+        Converter<String, Integer> converter = from -> Integer.valueOf(from);
+        log.debug("Converted to {}", converter.convert("100"));
+    }
+
     public static void main(String[] args) {
         Lambdas lambdas = new Lambdas();
-        lambdas.sortList();
+        lambdas.basicLambda();
+        lambdas.functionalInterface();
     }
 }
