@@ -20,34 +20,6 @@ public class Optionals {
 
     private static final Logger log = LoggerFactory.getLogger(Optionals.class);
 
-    Optional<String> upperCaseFirstLetter(String source) {
-        if (source.isEmpty()) {
-            return Optional.empty();
-        }
-        String uppercased = upperCase(firstLetter(source)) + lowerCase(allButFirstLetter(source));
-        return Optional.of(uppercased);
-    }
-
-    Optional<String> wrapNull() {
-        return Optional.ofNullable(null);
-    }
-
-    private String upperCase(String source) {
-        return source.toUpperCase();
-    }
-
-    private String firstLetter(String source) {
-        return source.substring(0, 1);
-    }
-
-    private String lowerCase(String source) {
-        return source.toLowerCase();
-    }
-
-    private String allButFirstLetter(String source) {
-        return source.substring(1);
-    }
-
     public static void main(String[] args) {
         Optionals optionals = new Optionals();
         plainOptional(optionals);
@@ -92,5 +64,33 @@ public class Optionals {
 
     static int countLetters(String input) {
         return input.length() - 1;
+    }
+
+    Optional<String> upperCaseFirstLetter(String source) {
+        if (source.isEmpty()) {
+            return Optional.empty();
+        }
+        String uppercased = upperCase(firstLetter(source)) + lowerCase(allButFirstLetter(source));
+        return Optional.of(uppercased);
+    }
+
+    Optional<String> wrapNull() {
+        return Optional.ofNullable(null);
+    }
+
+    private String upperCase(String source) {
+        return source.toUpperCase();
+    }
+
+    private String firstLetter(String source) {
+        return source.substring(0, 1);
+    }
+
+    private String lowerCase(String source) {
+        return source.toLowerCase();
+    }
+
+    private String allButFirstLetter(String source) {
+        return source.substring(1);
     }
 }

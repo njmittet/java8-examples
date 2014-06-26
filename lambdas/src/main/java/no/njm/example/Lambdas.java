@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.IntSummaryStatistics;
 import java.util.List;
 
 /**
@@ -14,6 +13,13 @@ import java.util.List;
 public class Lambdas {
 
     private static final Logger log = LoggerFactory.getLogger(Lambdas.class);
+
+    public static void main(String[] args) {
+        Lambdas lambdas = new Lambdas();
+        lambdas.basicLambda();
+        lambdas.functionalInterface();
+        lambdas.methodReference();
+    }
 
     private void basicLambda() {
         List<String> list = new ArrayList<>();
@@ -46,12 +52,5 @@ public class Lambdas {
 
         Converter<String, String> firstLetter = word::firstLetter;
         log.debug("First letter is {}", firstLetter.convert("string"));
-    }
-
-    public static void main(String[] args) {
-        Lambdas lambdas = new Lambdas();
-        lambdas.basicLambda();
-        lambdas.functionalInterface();
-        lambdas.methodReference();
     }
 }
