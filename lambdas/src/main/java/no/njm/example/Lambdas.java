@@ -36,9 +36,22 @@ public class Lambdas {
         log.debug("Converted to {}", converter.convert("100"));
     }
 
+    private void methodReference() {
+        // Passing references to methods or constructors using the :: keyword
+        Converter<String, Integer> intConverter = Integer::valueOf;
+        log.debug("Converted to {}", intConverter.convert("100"));
+
+        // Referencing instance method
+        Word word = new Word();
+
+        Converter<String, String> firstLetter = word::firstLetter;
+        log.debug("First letter is {}", firstLetter.convert("string"));
+    }
+
     public static void main(String[] args) {
         Lambdas lambdas = new Lambdas();
         lambdas.basicLambda();
         lambdas.functionalInterface();
+        lambdas.methodReference();
     }
 }
