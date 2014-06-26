@@ -4,7 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * Each lambda corresponds to a given type, specified by an interface.
@@ -19,6 +22,7 @@ public class Lambdas {
         lambdas.basicLambda();
         lambdas.functionalInterface();
         lambdas.methodReference();
+        lambdas.constructorReference();
     }
 
     private void basicLambda() {
@@ -42,6 +46,10 @@ public class Lambdas {
         log.debug("Converted to {}", converter.convert("100"));
     }
 
+    /**
+     * Method references enables referencing an existing method by name instead
+     * of using a lambda to call that method.
+     */
     private void methodReference() {
         // Passing references to methods or constructors using the :: keyword
         Converter<String, Integer> intConverter = Integer::valueOf;
@@ -52,5 +60,31 @@ public class Lambdas {
 
         Converter<String, String> firstLetter = word::firstLetter;
         log.debug("First letter is {}", firstLetter.convert("string"));
+    }
+
+    /**
+     * ArrayList::new equals () -> new ArrayList<>().
+     * <p>
+     * Methods and constuctors can be overloaded so ArrayList::new could refer to any of its three
+     * constructors.  The method it resolves to depends on which functional interface it's being used for.
+     */
+    private void constructorReference() {
+        //The compiler chooses the right constructor by matching the function interface signature
+        PersonFactory<Person> personFactory = Person::new;
+        Person person = personFactory.create("Firstname", "Lastname");
+        log.debug("Person has name {} {}", person.firstName, person.lastName);
+
+        // The functional interface Supplier the method get() that returns an object
+        HashSet<String> filledCollection = initCollection(HashSet::new, "First", "Second");
+        for (String element : filledCollection) {
+            log.debug("Collection element is {}", element);
+        }
+    }
+
+    private <T, P extends Collection<T>> P initCollection(Supplier<P> collectionFactory, T... elements) {
+        P collection = collectionFactory.get();
+        for (T element : elements)
+            collection.add(element);
+        return collection;
     }
 }
