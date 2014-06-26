@@ -39,6 +39,7 @@
     <modules>
         <module>default-methods</module>
         <module>optionals</module>
+        <module>lambdas</module>
     </modules>
 
 </project>
