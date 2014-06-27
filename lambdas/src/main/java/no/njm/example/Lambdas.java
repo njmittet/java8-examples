@@ -16,6 +16,8 @@ import java.util.function.Supplier;
 public class Lambdas {
 
     private static final Logger log = LoggerFactory.getLogger(Lambdas.class);
+    private static int staticNum = 0;
+    private int instanceNum = 0;
 
     public static void main(String[] args) {
         Lambdas lambdas = new Lambdas();
@@ -23,6 +25,7 @@ public class Lambdas {
         lambdas.functionalInterface();
         lambdas.methodReference();
         lambdas.constructorReference();
+        lambdas.lambdaScope();
     }
 
     private void basicLambda() {
@@ -42,8 +45,8 @@ public class Lambdas {
 
     private void functionalInterface() {
         // Omitting () around single input parameter
-        Converter<String, Integer> converter = from -> Integer.valueOf(from);
-        log.debug("Converted to {}", converter.convert("100"));
+        Converter<String, Integer> stringConverter = from -> Integer.valueOf(from);
+        log.debug("Converted to {}", stringConverter.convert("100"));
     }
 
     /**
@@ -86,5 +89,30 @@ public class Lambdas {
         for (T element : elements)
             collection.add(element);
         return collection;
+    }
+
+    /**
+     * Lamdabas has access to (implicitly) final variables, instance fields and
+     * static variables from the local outer scope.
+     */
+    private void lambdaScope() {
+        final int i = 1;
+        Converter<Integer, String> stringConverter = from -> String.valueOf(i + from);
+        log.debug("Converted to {}", stringConverter.convert(3));
+
+        // Implicitly final variable
+        int j = 2;
+        Converter<Integer, String> implicitConverter = from -> String.valueOf(j + from);
+        log.debug("Converted to {}", implicitConverter.convert(3));
+
+        // As in anonymous objects, lambdas can write instance fields and static variables.
+        Converter<Integer, String> instanceConverter = (from) -> {
+            instanceNum = 2;
+            staticNum = 3;
+            return String.valueOf(instanceNum + staticNum + from);
+        };
+        log.debug("Converted to {}", instanceConverter.convert(3));
+        log.debug("instaceNum is {}", instanceNum);
+        log.debug("staticNum is {}", staticNum);
     }
 }
