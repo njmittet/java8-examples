@@ -60,9 +60,9 @@ public class Lambdas {
         log.debug("Converted to {}", intConverter.convert("100"));
 
         // Referencing instance method
-        Word word = new Word();
+        WordUtil wordUtil = new WordUtil();
 
-        Converter<String, String> firstLetter = word::firstLetter;
+        Converter<String, String> firstLetter = wordUtil::firstLetter;
         log.debug("First letter is {}", firstLetter.convert("string"));
     }
 
