@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -78,16 +79,15 @@ public class Lambdas {
         log.debug("Person has name {} {}", person.firstName, person.lastName);
 
         // The functional interface Supplier the method get() that returns an object
-        HashSet<String> filledCollection = initCollection(HashSet::new, "First", "Second");
+        HashSet<String> filledCollection = initCollection(HashSet::new, new String[] {"First", "Second"});
         for (String element : filledCollection) {
             log.debug("Collection element is {}", element);
         }
     }
 
-    private <T, P extends Collection<T>> P initCollection(Supplier<P> collectionFactory, T... elements) {
+    private <T, P extends Collection<T>> P initCollection(Supplier<P> collectionFactory, T[] elements) {
         P collection = collectionFactory.get();
-        for (T element : elements)
-            collection.add(element);
+        collection.addAll(Arrays.asList(elements));
         return collection;
     }
 
