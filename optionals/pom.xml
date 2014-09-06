@@ -8,12 +8,8 @@
         <version>1.0</version>
     </parent>
 
-    <properties>
-        <module-name>optionals</module-name>
-    </properties>
-
-    <artifactId>${module-name}</artifactId>
-    <name>${module-name}</name>
+    <artifactId>optionals</artifactId>
+    <name>optionals</name>
     <packaging>jar</packaging>
 
     <build>
@@ -21,7 +17,7 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <finalName>${module-name}</finalName>
+                    <finalName>optionals</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <attach>false</attach>
                     <descriptorRefs>

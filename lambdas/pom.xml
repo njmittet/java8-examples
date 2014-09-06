@@ -12,8 +12,8 @@
         <module-name>lambdas</module-name>
     </properties>
 
-    <artifactId>${module-name}</artifactId>
-    <name>${module-name}</name>
+    <artifactId>lambdas</artifactId>
+    <name>lambdas</name>
     <packaging>jar</packaging>
 
     <build>
@@ -21,7 +21,7 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <finalName>${module-name}</finalName>
+                    <finalName>lambdas</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <attach>false</attach>
                     <descriptorRefs>
