@@ -69,18 +69,18 @@ public class Lambdas {
     /**
      * ArrayList::new equals () -> new ArrayList<>().
      * <p>
-     * Methods and constuctors can be overloaded so ArrayList::new could refer to any of its three
-     * constructors.  The method it resolves to depends on which functional interface it's being used for.
+     * Methods and constructors can be overloaded so ArrayList::new could refer to any of its three
+     * constructors. The method it resolves to depends on which functional interface it's being used for.
      */
     private void constructorReference() {
-        //The compiler chooses the right constructor by matching the function interface signature
+        // The compiler chooses the right constructor by matching the function interface signature
         PersonFactory<Person> personFactory = Person::new;
-        Person person = personFactory.create("Firstname", "Lastname");
+        Person person = personFactory.create("First", "Last");
         log.debug("Person has name {} {}", person.firstName, person.lastName);
 
         // The functional interface Supplier the method get() that returns an object
-        HashSet<String> filledCollection = initCollection(HashSet::new, new String[] {"First", "Second"});
-        for (String element : filledCollection) {
+        HashSet<String> collection = initCollection(HashSet::new, new String[] {"First", "Second"});
+        for (String element : collection) {
             log.debug("Collection element is {}", element);
         }
     }
@@ -92,7 +92,7 @@ public class Lambdas {
     }
 
     /**
-     * Lamdabas has access to (implicitly) final variables, instance fields and
+     * Lambdas has access to (implicitly) final variables, instance fields and
      * static variables from the local outer scope.
      */
     private void lambdaScope() {
@@ -112,7 +112,7 @@ public class Lambdas {
             return String.valueOf(instanceNum + staticNum + from);
         };
         log.debug("Converted to {}", instanceConverter.convert(3));
-        log.debug("instaceNum is {}", instanceNum);
+        log.debug("instanceNum is {}", instanceNum);
         log.debug("staticNum is {}", staticNum);
     }
 }

@@ -9,8 +9,8 @@ import java.util.Optional;
  * An Optional is a class that encapsulates an optional value, and can be viewed as
  * a single-value container that either contains a value or doesn't.
  * <p>
- * Ufortunatley
- * Due to backwards-compability, none of the existing Java collections will be retrofitted into returning Optionals.
+ * Unfortunately, due to backwards-compatibility, none of the existing Java collections will be
+ * retrofitted into returning Optionals.
  * <pre>
  * List<MyObject> list = getList();
  * Optional<E> optional = list.get(index);

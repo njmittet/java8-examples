@@ -1,9 +1,9 @@
 package no.njm.example;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+        import org.slf4j.Logger;
+        import org.slf4j.LoggerFactory;
 
-import java.time.format.DateTimeFormatter;
+        import java.time.format.DateTimeFormatter;
 
 public class DefaultMethods {
 
@@ -24,8 +24,8 @@ public class DefaultMethods {
         timeUtil.setTime(22, 10, 30);
         log.debug("Changed LocalTime to {}", timeUtil.currentLocalDateTime());
 
-        log.debug("Zoned ISO 8601 LocalDateTime is {}", timeUtil.zonedDateTime("Asia/Tokyo"));
+        log.debug("ISO 8601 LocalDateTime is {}", timeUtil.zonedDateTime("Asia/Tokyo"));
 
-        log.debug("Formatted LocalDateTime is {}", timeUtil.currentLocalDateTime().format(READABLE_FORMAT));
+        log.debug("Readable LocalDateTime is {}", timeUtil.currentLocalDateTime().format(READABLE_FORMAT));
     }
 }
