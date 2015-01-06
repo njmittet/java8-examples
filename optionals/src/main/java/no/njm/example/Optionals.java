@@ -25,7 +25,7 @@ public class Optionals {
         plainOptional(optionals);
         lambdaOptional(optionals);
         fallbackOptional(optionals);
-        nullWraped(optionals);
+        nullWrapped(optionals);
         filterOptional(optionals);
         mapOptional(optionals);
     }
@@ -47,14 +47,14 @@ public class Optionals {
         log.debug(optional.orElse("Default"));
     }
 
-    private static void nullWraped(Optionals optionals) {
+    private static void nullWrapped(Optionals optionals) {
         Optional<String> optional = optionals.wrapNull();
         log.debug(optional.orElse("Default"));
     }
 
     private static void filterOptional(Optionals optionals) {
-        Optional<String> res = optionals.upperCaseFirstLetter("source");
-        res.filter(s -> s.length() > 4).ifPresent(s -> log.debug(s));
+        Optional<String> optional = optionals.upperCaseFirstLetter("source");
+        optional.filter(s -> s.length() > 4).ifPresent(s -> log.debug(s));
     }
 
     private static void mapOptional(Optionals optionals) {
