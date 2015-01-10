@@ -19,6 +19,7 @@
         <module>default-methods</module>
         <module>optionals</module>
         <module>lambdas</module>
+        <module>streams</module>
     </modules>
 
 </project>
