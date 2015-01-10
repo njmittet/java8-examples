@@ -20,6 +20,8 @@
         <module>optionals</module>
         <module>lambdas</module>
         <module>streams</module>
+        <module>maps</module>
+        <module>date-api</module>
     </modules>
 
 </project>
