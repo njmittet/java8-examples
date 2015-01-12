@@ -21,15 +21,16 @@ public class Lambdas {
     private int instanceNum = 0;
 
     public static void main(String[] args) {
+        basicLambda();
+        functionalInterface();
+        methodReference();
+        constructorReference();
+
         Lambdas lambdas = new Lambdas();
-        lambdas.basicLambda();
-        lambdas.functionalInterface();
-        lambdas.methodReference();
-        lambdas.constructorReference();
         lambdas.lambdaScope();
     }
 
-    private void basicLambda() {
+    private static void basicLambda() {
         List<String> list = new ArrayList<>();
 
         // Implementing interface Comparator
@@ -44,7 +45,7 @@ public class Lambdas {
         list.sort((a, b) -> a.compareTo(b));
     }
 
-    private void functionalInterface() {
+    private static void functionalInterface() {
         // Omitting () around single input parameter
         Converter<String, Integer> stringConverter = from -> Integer.valueOf(from);
         log.debug("Converted to {}", stringConverter.convert("100"));
@@ -54,7 +55,7 @@ public class Lambdas {
      * Method references enables referencing an existing method by name instead
      * of using a lambda to call that method.
      */
-    private void methodReference() {
+    private static void methodReference() {
         // Passing references to methods or constructors using the :: keyword
         Converter<String, Integer> intConverter = Integer::valueOf;
         log.debug("Converted to {}", intConverter.convert("100"));
@@ -72,7 +73,7 @@ public class Lambdas {
      * Methods and constructors can be overloaded so ArrayList::new could refer to any of its three
      * constructors. The method it resolves to depends on which functional interface it's being used for.
      */
-    private void constructorReference() {
+    private static void constructorReference() {
         // The compiler chooses the right constructor by matching the function interface signature
         PersonFactory<Person> personFactory = Person::new;
         Person person = personFactory.create("First", "Last");
@@ -85,7 +86,7 @@ public class Lambdas {
         }
     }
 
-    private <T, P extends Collection<T>> P initCollection(Supplier<P> collectionFactory, T[] elements) {
+    private static <T, P extends Collection<T>> P initCollection(Supplier<P> collectionFactory, T[] elements) {
         P collection = collectionFactory.get();
         collection.addAll(Arrays.asList(elements));
         return collection;
