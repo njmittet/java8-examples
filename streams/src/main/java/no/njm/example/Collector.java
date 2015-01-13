@@ -2,6 +2,7 @@ package no.njm.example;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -21,13 +22,15 @@ public class Collector {
             new Person("Bravo", 30),
             new Person("Charlie", 40),
             new Person("Delta", 50),
-            new Person("Echo", 60));
+            new Person("Echo", 60),
+            new Person("Foxtrot", 60));
 
     public static void main(String[] args) {
         toList();
         count();
         average();
         join();
+        grouping();
     }
 
     /**
@@ -72,5 +75,12 @@ public class Collector {
                 .collect(Collectors.joining(", ")); // (String delimiter, String prefix, String postfix)
 
         log.debug("Joined person string is \"{}\"", phrase);
+    }
+
+    private static void grouping() {
+        Map<Integer, List<Person>> group = persons
+                .stream()
+                .collect(Collectors.groupingBy(p -> p.age));
+        group.forEach((age, persons) -> log.debug("Persons with age {}: {}", age, persons.size()));
     }
 }
