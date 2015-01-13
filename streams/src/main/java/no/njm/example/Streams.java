@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,8 @@ import org.slf4j.LoggerFactory;
 /**
  * A java.util.Stream represents a sequence of elements on which one or more operations can be performed.
  * Collections in Java 8 are extended so you can simply create streams either by calling Collection.stream().
+ *
+ * Java 8 streams cannot be reused. As soon as you call any terminal operation the stream is closed.
  */
 public class Streams {
 
@@ -35,6 +40,7 @@ public class Streams {
         map();
         reduce();
         toList();
+        kindOfStreams();
     }
 
     /**
@@ -133,5 +139,39 @@ public class Streams {
            .stream()
            .forEach(entry -> list.add(entry.getValue()));
         log.debug("List has {} elements", list.size());
+    }
+
+    /**
+     * Streams can be created from various data sources.
+     */
+    private static void kindOfStreams() {
+
+        // From List
+        Arrays.asList("alfa", "bravo", "charlie")
+              .stream()
+              .findFirst()
+              .ifPresent(log::debug);
+
+        // From object references
+        Stream.of("alfa", "bravo", "charlie")
+              .findFirst()
+              .ifPresent(log::debug);
+
+        // From primitive type
+        log.debug("Sum range is {}", IntStream.range(1, 4)
+                                              .sum());
+
+        // From arrays
+        OptionalDouble doubleResult = Arrays.stream(new int[]{1, 2, 3})
+                                            .map(n -> 2 * n + 1)
+                                            .average();
+        log.debug("Average is {}", doubleResult.orElse(0));
+
+        // Mapping stream values
+        OptionalInt intResult = Stream.of("a1", "a2", "a3")
+                                         .map(s -> s.substring(1))
+                                         .mapToInt(Integer::parseInt)
+                                         .max();
+        log.debug("Max is {}", intResult.orElse(0));
     }
 }
