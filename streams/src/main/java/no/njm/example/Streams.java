@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 /**
  * A java.util.Stream represents a sequence of elements on which one or more operations can be performed.
  * Collections in Java 8 are extended so you can simply create streams either by calling Collection.stream().
- *
+ * <p>
  * Java 8 streams cannot be reused. As soon as you call any terminal operation the stream is closed.
  */
 public class Streams {
@@ -169,9 +169,9 @@ public class Streams {
 
         // Mapping stream values
         OptionalInt intResult = Stream.of("a1", "a2", "a3")
-                                         .map(s -> s.substring(1))
-                                         .mapToInt(Integer::parseInt)
-                                         .max();
+                                      .map(s -> s.substring(1))
+                                      .mapToInt(Integer::parseInt)
+                                      .max();
         log.debug("Max is {}", intResult.orElse(0));
     }
 }
