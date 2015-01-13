@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -20,25 +19,6 @@ import org.slf4j.LoggerFactory;
 public class Streams {
 
     private static final Logger log = LoggerFactory.getLogger(Streams.class);
-
-    private static List<String> largeList1;
-    private static List<String> largeList2;
-
-    static {
-        int max = 1000000;
-        List<String> list1 = new ArrayList<>(max);
-        List<String> list2 = new ArrayList<>(max);
-        for (int i = 0; i < max; i++) {
-            UUID uuid = UUID.randomUUID();
-            list1.add(uuid.toString());
-        }
-        for (int i = 0; i < max; i++) {
-            UUID uuid = UUID.randomUUID();
-            list2.add(uuid.toString());
-        }
-        largeList1 = list1;
-        largeList2 = list2;
-    }
 
     static List<Person> persons = Arrays.asList(
             new Person("Alfa", 20),
@@ -55,7 +35,6 @@ public class Streams {
         map();
         reduce();
         toList();
-        parallel();
     }
 
     /**
@@ -154,26 +133,5 @@ public class Streams {
            .stream()
            .forEach(entry -> list.add(entry.getValue()));
         log.debug("List has {} elements", list.size());
-    }
-
-    /**
-     * Sequential streams uses a single thread while parallel uses multiple threads.
-     */
-    private static void parallel() {
-        // Sequential sort
-        long s1 = System.nanoTime();
-        largeList1.stream()
-                  .sorted()
-                  .count();
-        long e1 = System.nanoTime();
-        log.debug(String.format("Sequential sort took: %d ms", TimeUnit.NANOSECONDS.toMillis(e1 - s1)));
-
-        // Parallel sort
-        long s2 = System.nanoTime();
-        largeList2.parallelStream()
-                  .sorted()
-                  .count();
-        long e2 = System.nanoTime();
-        log.debug(String.format("Parallel sort took: %d ms", TimeUnit.NANOSECONDS.toMillis(e2 - s2)));
     }
 }
