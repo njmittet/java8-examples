@@ -40,17 +40,6 @@ public class Streams {
         largeList2 = list2;
     }
 
-    private static class Person {
-
-        String name;
-        int age;
-
-        public Person(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
-    }
-
     static List<Person> persons = Arrays.asList(
             new Person("Alfa", 20),
             new Person("Bravo", 30),
@@ -200,8 +189,7 @@ public class Streams {
     }
 
     /**
-     * Operations on sequential streams are performed on a single thread while
-     * operations on parallel streams are performed concurrent on multiple threads.
+     * Sequential streams uses a single thread while parallel uses multiple threads.
      */
     private static void parallel() {
         // Sequential sort
