@@ -16,10 +16,10 @@ public class MapIteration {
 
     public static void main(String[] args) {
         singleValuedMap();
-        mulitValuedMap();
+        multiValuedMap();
     }
 
-    static void singleValuedMap() {
+    private static void singleValuedMap() {
         Map<String, String> map = new HashMap<>();
         map.put("key_1", "value_1");
         map.put("key_2", "value_2");
@@ -40,7 +40,7 @@ public class MapIteration {
         }
     }
 
-    static void mulitValuedMap() {
+    private static void multiValuedMap() {
         Map<String, List<String>> map = new HashMap<>();
         map.put("key_3", Arrays.asList("value_3_1", "value_3_2"));
         map.put("key_4", Arrays.asList("value_4_1", "value_4_1"));
